@@ -1,10 +1,12 @@
-
-import './App.css';
+import {TaskCreator} from "./components/TaskCreator";
+import "./App.css";
 
 function App() {
+  
+
   return (
     <div className="App">
-     <h1>Task App</h1>
+        <TaskCreator></TaskCreator>
     </div>
   );
 }
