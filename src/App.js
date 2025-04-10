@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { TaskCreator } from "./components/TaskCreator";
 import "./App.css";
 import { TaskTable } from "./components/TaskTable";
+import { VisibilityControl } from "./components/VisibilityControl";
 
 function App() {
   const [taskItems, setTaskItems] = useState([]);
@@ -27,6 +28,12 @@ function App() {
       setTaskItems(JSON.parse(datos));
     }
   }, []);
+
+  const cleanTasks = () => {
+    setTaskItems(taskItems.filter((task) => !task.done));
+    setShowCompleted(false);
+  }
+
   // Guardar las tareas en el localStorage cada vez que cambian
   // el estado de las tareas
   useEffect(() => {
@@ -38,15 +45,11 @@ function App() {
       <TaskCreator createNewTask={createNewTask} />
       <TaskTable taskItems={taskItems} toggleTask={toggleTask} />
 
-      <div>
-        <input
-          type="checkbox"
-          onChange={(e) => {
-            setShowCompleted(!showCompleted);
-          }}
-        />
-        <label>Show Tasks Done</label>
-      </div>
+      <VisibilityControl
+      setShowCompleted={(checked)=>setShowCompleted(checked)} cleanTasks={cleanTasks}
+        
+      />
+
       {showCompleted && (
         <TaskTable
           taskItems={taskItems}
