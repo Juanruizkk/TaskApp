@@ -17,7 +17,7 @@ function App() {
 
   const toggleTask = (taskName) => {
     setTaskItems(
-      taskItems.map((t) => (t.name == taskName ? { ...t, done: !t.done } : t))
+      taskItems.map((t) => (t.name === taskName ? { ...t, done: !t.done } : t))
     );
   };
 
@@ -41,11 +41,13 @@ function App() {
   }, [taskItems]);
 
   return (
-    <div className="App">
+    <main className="bg-dark vh-100 text-white">
+      <div className="container p-4 col-md-4 offset-md-4">
       <TaskCreator createNewTask={createNewTask} />
       <TaskTable taskItems={taskItems} toggleTask={toggleTask} />
 
       <VisibilityControl
+      isChecked={showCompleted}
       setShowCompleted={(checked)=>setShowCompleted(checked)} cleanTasks={cleanTasks}
         
       />
@@ -57,7 +59,8 @@ function App() {
           showCompleted={showCompleted}
         />
       )}
-    </div>
+      </div>
+    </main>
   );
 }
 

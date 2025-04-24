@@ -7,16 +7,17 @@ export const VisibilityControl = ({isChecked,setShowCompleted,cleanTasks}) => {
         
     }
   return (
-    <div>
-      <input
+    <div className="d-flex justify-content-between my-2">
+        <div> <input
         type="checkbox"
         isChecked={isChecked}
         onChange={(e) => {
             setShowCompleted(e.target.checked);
         }}
       />{" "}
-      <label>Show Tasks Done</label>
-      <button onClick={handleDelete}>
+      <label>Show Tasks Done</label></div>
+      
+      <button className="btn btn-primary" onClick={handleDelete}>
         Limpiar
       </button>
     </div>
